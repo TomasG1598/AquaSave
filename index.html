@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaSave — Dashboard de Consumo de Agua</title>
+  <meta name="description" content="Calcula y visualiza tu consumo de agua. Compara con promedios globales y recibe recomendaciones personalizadas.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="nav">
+    <div class="nav__contenedor">
+      <div class="nav__logo">
+        <span class="nav__logo-icon">◈</span>
+        Aqua<span>Save</span>
+      </div>
+      <p class="nav__tagline">Dashboard de consumo hídrico</p>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="contenedor">
+      <div class="hero__grid">
+        <div class="hero__texto">
+          <span class="hero__label">Herramienta de análisis</span>
+          <h1>¿Cuánta agua<br>consumes al día?</h1>
+          <p>Calcula tu consumo hídrico diario, compáralo con los promedios colombiano y mundial, y recibe recomendaciones personalizadas para reducirlo.</p>
+          <a href="#calculadora" class="btn btn--primario">Calcular mi consumo</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat__card">
+            <span class="stat__numero">187</span>
+            <span class="stat__unidad">L/día</span>
+            <span class="stat__label">Promedio Colombia</span>
+          </div>
+          <div class="stat__card stat__card--highlight">
+            <span class="stat__numero">310</span>
+            <span class="stat__unidad">L/día</span>
+            <span class="stat__label">Promedio mundial</span>
+          </div>
+          <div class="stat__card">
+            <span class="stat__numero">50</span>
+            <span class="stat__unidad">L/día</span>
+            <span class="stat__label">Mínimo recomendado ONU</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section class="seccion" id="calculadora">
+    <div class="contenedor">
+      <div class="seccion__header">
+        <h2>Calculadora de consumo</h2>
+        <p>Ajusta los controles según tus hábitos diarios</p>
+      </div>
+
+      <div class="calc__grid">
+
+        <!-- CONTROLES -->
+        <div class="calc__controles">
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">🚿</span>
+              <div>
+                <label>Ducha</label>
+                <span class="control__info">~10 litros por minuto</span>
+              </div>
+              <span class="control__valor" id="val-ducha">5 min</span>
+            </div>
+            <input type="range" class="slider" id="ducha" min="1" max="30" value="5">
+            <div class="slider__labels"><span>1 min</span><span>30 min</span></div>
+          </div>
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">🚽</span>
+              <div>
+                <label>Inodoro</label>
+                <span class="control__info">~8 litros por descarga</span>
+              </div>
+              <span class="control__valor" id="val-inodoro">4 veces</span>
+            </div>
+            <input type="range" class="slider" id="inodoro" min="1" max="15" value="4">
+            <div class="slider__labels"><span>1 vez</span><span>15 veces</span></div>
+          </div>
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">🍽️</span>
+              <div>
+                <label>Lavado de platos</label>
+                <span class="control__info">~15 litros por lavada</span>
+              </div>
+              <span class="control__valor" id="val-platos">2 veces</span>
+            </div>
+            <input type="range" class="slider" id="platos" min="0" max="6" value="2">
+            <div class="slider__labels"><span>0</span><span>6 veces</span></div>
+          </div>
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">👐</span>
+              <div>
+                <label>Lavado de manos</label>
+                <span class="control__info">~2 litros por lavada</span>
+              </div>
+              <span class="control__valor" id="val-manos">8 veces</span>
+            </div>
+            <input type="range" class="slider" id="manos" min="1" max="20" value="8">
+            <div class="slider__labels"><span>1 vez</span><span>20 veces</span></div>
+          </div>
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">🪥</span>
+              <div>
+                <label>Cepillado de dientes</label>
+                <span class="control__info">~3 litros si no cierras</span>
+              </div>
+              <span class="control__valor" id="val-dientes">2 veces</span>
+            </div>
+            <input type="range" class="slider" id="dientes" min="1" max="6" value="2">
+            <div class="slider__labels"><span>1 vez</span><span>6 veces</span></div>
+          </div>
+
+          <div class="control__grupo">
+            <div class="control__header">
+              <span class="control__icono">👕</span>
+              <div>
+                <label>Lavadora</label>
+                <span class="control__info">~80 litros por ciclo</span>
+              </div>
+              <span class="control__valor" id="val-lavadora">0.3 ciclos</span>
+            </div>
+            <input type="range" class="slider" id="lavadora" min="0" max="2" step="0.1" value="0.3">
+            <div class="slider__labels"><span>0</span><span>2 ciclos</span></div>
+          </div>
+
+        </div>
+
+        <!-- RESULTADOS -->
+        <div class="calc__resultados">
+
+          <div class="resultado__principal">
+            <span class="resultado__label">Tu consumo diario</span>
+            <div class="resultado__numero">
+              <span id="total-litros">142</span>
+              <span class="resultado__unidad">L/día</span>
+            </div>
+            <div class="resultado__nivel" id="nivel-badge">Moderado</div>
+          </div>
+
+          <!-- GRÁFICA DE BARRAS -->
+          <div class="grafica">
+            <h3>Comparativa</h3>
+            <div class="grafica__barras" id="grafica-barras">
+
+              <div class="barra__fila">
+                <span class="barra__etiqueta">Tú</span>
+                <div class="barra__contenedor">
+                  <div class="barra barra--usuario" id="barra-usuario" style="width: 46%"></div>
+                </div>
+                <span class="barra__valor" id="label-usuario">142 L</span>
+              </div>
+
+              <div class="barra__fila">
+                <span class="barra__etiqueta">Colombia</span>
+                <div class="barra__contenedor">
+                  <div class="barra barra--colombia" style="width: 60%"></div>
+                </div>
+                <span class="barra__valor">187 L</span>
+              </div>
+
+              <div class="barra__fila">
+                <span class="barra__etiqueta">Mundial</span>
+                <div class="barra__contenedor">
+                  <div class="barra barra--mundial" style="width: 100%"></div>
+                </div>
+                <span class="barra__valor">310 L</span>
+              </div>
+
+              <div class="barra__fila">
+                <span class="barra__etiqueta">ONU mín.</span>
+                <div class="barra__contenedor">
+                  <div class="barra barra--onu" style="width: 16%"></div>
+                </div>
+                <span class="barra__valor">50 L</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- DESGLOSE -->
+          <div class="desglose">
+            <h3>Desglose por actividad</h3>
+            <div class="desglose__lista" id="desglose-lista">
+              <div class="desglose__item">
+                <span>🚿 Ducha</span>
+                <span id="d-ducha">50 L</span>
+              </div>
+              <div class="desglose__item">
+                <span>🚽 Inodoro</span>
+                <span id="d-inodoro">32 L</span>
+              </div>
+              <div class="desglose__item">
+                <span>🍽️ Platos</span>
+                <span id="d-platos">30 L</span>
+              </div>
+              <div class="desglose__item">
+                <span>👐 Manos</span>
+                <span id="d-manos">16 L</span>
+              </div>
+              <div class="desglose__item">
+                <span>🪥 Dientes</span>
+                <span id="d-dientes">6 L</span>
+              </div>
+              <div class="desglose__item">
+                <span>👕 Lavadora</span>
+                <span id="d-lavadora">24 L</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section class="seccion seccion--oscura" id="recomendaciones">
+    <div class="contenedor">
+      <div class="seccion__header">
+        <h2>Recomendaciones</h2>
+        <p id="reco-intro">Basadas en tu nivel de consumo actual</p>
+      </div>
+      <div class="recos__grid" id="recos-grid">
+        <!-- Se generan dinámicamente con JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DATOS COLOMBIA -->
+  <section class="seccion" id="datos">
+    <div class="contenedor">
+      <div class="seccion__header">
+        <h2>El agua en Colombia</h2>
+        <p>Datos que deberías conocer</p>
+      </div>
+      <div class="datos__grid">
+        <div class="dato__card">
+          <span class="dato__icono">💧</span>
+          <span class="dato__numero">94%</span>
+          <p>de colombianos tiene acceso a agua potable en zonas urbanas</p>
+        </div>
+        <div class="dato__card">
+          <span class="dato__icono">⚠️</span>
+          <span class="dato__numero">37%</span>
+          <p>de municipios colombianos tiene riesgo de desabastecimiento hídrico</p>
+        </div>
+        <div class="dato__card">
+          <span class="dato__icono">🌡️</span>
+          <span class="dato__numero">30%</span>
+          <p>del agua potable se pierde por fugas en la red de distribución</p>
+        </div>
+        <div class="dato__card">
+          <span class="dato__icono">💰</span>
+          <span class="dato__numero">$85</span>
+          <p>costo promedio por m³ de agua en Medellín (EPM, 2024)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>AquaSave — Construido con HTML, CSS & JavaScript por <strong>Tomás Gil Gómez</strong></p>
+    <p class="footer__sub">Datos: ONU, IDEAM, EPM · Medellín, Colombia 2025</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html> 
